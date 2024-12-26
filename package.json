@@ -1,0 +1,46 @@
+{
+  "name": "@rbxts/my-library",
+  "version": "1.0.0",
+  "description": "My description",
+  "main": "out/init.luau",
+  "type": "module",
+  "typings": "out/index.d.ts",
+  "files": [
+    "out",
+    "README.md",
+    "!out/tests",
+    "!**/*.tsbuildinfo"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github repo"
+  },
+  "homepage": "readme",
+  "scripts": {
+    "build": "rbxtsc",
+    "devBuild": "rbxtsc --type game --rojo dev.project.json",
+    "devWatch": "rbxtsc --watch --type game --rojo dev.project.json",
+    "serve": "rojo serve dev.project.json",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "sumer_real",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@rbxts/compiler-types": "^3.0.0-types.0",
+    "@rbxts/testez": "^0.4.2-ts.0",
+    "@rbxts/types": "^1.0.813",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "isentinel-eslint-plugin-roblox-ts": "0.0.37",
+    "prettier": "^3.4.2",
+    "roblox-ts": "^3.0.0",
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.18.2"
+  }
+}

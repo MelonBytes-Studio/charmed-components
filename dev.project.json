@@ -1,0 +1,28 @@
+{
+	"name": "my-library-dev",
+	"globIgnorePaths": ["**/tsconfig.json", "**/package.json", "**/package-lock.json"],
+
+	"tree": {
+		"$className": "DataModel",
+
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+
+			"node_modules": {
+				"$className": "Folder",
+
+				"@rbxts": {
+					"$path": "node_modules/@rbxts"
+				}
+			},
+
+			"my-library": {
+				"$path": "out"
+			},
+
+			"include": {
+				"$path": "include"
+			}
+		}
+	}
+}

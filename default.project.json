@@ -1,0 +1,8 @@
+{
+  	"name": "my-library",
+	"globIgnorePaths": ["**/tests"],
+
+  	"tree": {
+    	"$path": "out"
+  	}
+}

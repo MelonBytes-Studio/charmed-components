@@ -22,5 +22,13 @@
 	"noLib": true,
 
 	"experimentalDecorators": true,
+
+	"plugins": [
+		{ 
+			"transform": "rbxts-transformer-flamework",
+			"$rbxpackmode$": true,
+			"hashPrefix": "$mb"
+		}
+	]
   }
 }

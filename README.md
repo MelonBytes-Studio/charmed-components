@@ -8,6 +8,9 @@ SUMER (sumer_real discord): creator of this library and sweet-charm!
 
 Tesmi: the person who created [shared-component-flamework](https://github.com/Tesmi-Develop/shared-component-flamework/) that inspired me to create this library
 
+# ☄️ Install
+
+``npm install @rbxts/charmed-components``
 
 # 📚 Documentation
 

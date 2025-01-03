@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/charmed-components",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Library that adds sweet-charm atoms power to flamework components",
   "main": "out/init.luau",
   "type": "module",
@@ -25,7 +25,7 @@
     "devBuild": "rbxtsc --type game --rojo dev.project.json",
     "devWatch": "rbxtsc --watch --type game --rojo dev.project.json",
     "serve": "rojo serve dev.project.json",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [
     "charm",

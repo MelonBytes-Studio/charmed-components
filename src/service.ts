@@ -13,11 +13,11 @@ export class CharmedComponents implements OnInit {
 	public componentAtomsView!: AtomRepositoryView<AtomComponents>;
 
 	constructor() {
-		if (IS_CLIENT) {
+		if (IS_SERVER) {
 			this.componentAtoms = new AtomRepository();
 		}
 
-		if (IS_SERVER) {
+		if (IS_CLIENT) {
 			this.componentAtomsView = new AtomRepositoryView();
 		}
 	}

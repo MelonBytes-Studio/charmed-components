@@ -2,44 +2,14 @@
 	"version": 1,
 	"flameworkVersion": "1.2.3",
 	"identifiers": {
-		"@rbxts/charmed-components:out/component@CharmedComponent": "$mb:component@CharmedComponent",
-		"@rbxts/charmed-components:out/service@CharmedCompoents": "$mb:service@CharmedCompoents",
 		"@rbxts/charmed-components:out/atom-link@AtomLink": "$mb:atom-link@AtomLink",
 		"@rbxts/charmed-components:out/service@CharmedComponents": "$mb:service@CharmedComponents",
+		"@rbxts/charmed-components:out/component@CharmedComponent": "$mb:component@CharmedComponent",
 		"@rbxts/charmed-components:out/tests/component.spec@MyCharmedComponent": "$mb:tests/component.spec@MyCharmedComponent"
 	},
-	"metadata": {
-		"globs": {
-			"paths": {},
-			"origins": {}
-		}
-	},
+	"metadata": {},
 	"identifierPrefix": "$mb",
 	"classes": [
-		{
-			"filePath": "out\\component.lua",
-			"internalId": "$mb:component@CharmedComponent",
-			"decorators": [
-				{
-					"internalId": "$c:components@Component",
-					"name": "Component"
-				}
-			]
-		},
-		{
-			"filePath": "out\\service.lua",
-			"internalId": "$mb:service@CharmedCompoents",
-			"decorators": [
-				{
-					"internalId": "$:flamework@Controller",
-					"name": "Controller"
-				},
-				{
-					"internalId": "$:flamework@Service",
-					"name": "Service"
-				}
-			]
-		},
 		{
 			"filePath": "out\\service.lua",
 			"internalId": "$mb:service@CharmedComponents",
@@ -51,6 +21,16 @@
 				{
 					"internalId": "$:flamework@Service",
 					"name": "Service"
+				}
+			]
+		},
+		{
+			"filePath": "out\\component.lua",
+			"internalId": "$mb:component@CharmedComponent",
+			"decorators": [
+				{
+					"internalId": "$c:components@Component",
+					"name": "Component"
 				}
 			]
 		},

@@ -36,24 +36,30 @@ charmedComponents.sync(payload)  // use this to sync payload!
 
 ## create component
 
+if you need to use onStart, you must call this.initialize() inside onStart before any operations this will initialize charmed component, without that you will get errors
+
 ```ts
 interface State {
 	someValue: number;
 }
 
 @Component()
-class MyCharmedComponent extends CharmedComponent<State, {}, Instance> {
+class MyCharmedComponent extends CharmedComponent<State, {}, Instance> implements OnStart {
 	protected defaultState = {
 		someValue: 100,
 	};
 
+	public onStart() {
+		this.initialize();
+	}
+
 	@Action
 	public increment(by: number) {
-		this.setState((currentState) => {
+		return (currentState: State) => {
 			return {
 				someValue: currentState.someValue + by
 			};
-		});
+		};
 	}
 
 	@Subscribe((state) => state.someValue)
@@ -62,5 +68,3 @@ class MyCharmedComponent extends CharmedComponent<State, {}, Instance> {
 	}
 }
 ```
-
-P.S. please don't use flamework onInit, use onStart instead

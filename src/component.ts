@@ -1,5 +1,5 @@
 import { BaseComponent, Component } from "@flamework/components";
-import { OnInit, Reflect } from "@flamework/core";
+import { OnStart, Reflect } from "@flamework/core";
 import { Janitor } from "@rbxts/janitor";
 import { HttpService } from "@rbxts/services";
 import { AtomClass } from "@rbxts/sweet-charm";
@@ -20,8 +20,9 @@ export abstract class CharmedComponent<
 		GameObject extends Instance = Instance,
 	>
 	extends BaseComponent<Attributes & { __ID: string | undefined }, GameObject>
-	implements OnInit
+	implements OnStart
 {
+	private isStarted = false;
 	private janitor = new Janitor();
 
 	private atom!: AtomClass<State>;
@@ -33,8 +34,10 @@ export abstract class CharmedComponent<
 		super();
 	}
 
-	/** @hidden */
-	public onInit() {
+	protected initialize() {
+		if (this.isStarted) return;
+		this.isStarted = true;
+
 		if (IS_SERVER) {
 			this.onInitServer();
 		}
@@ -44,6 +47,10 @@ export abstract class CharmedComponent<
 		}
 
 		this.setupSubscribers();
+	}
+
+	public onStart() {
+		this.initialize();
 	}
 
 	/** @hidden */
@@ -66,6 +73,7 @@ export abstract class CharmedComponent<
 		assert(id, "Failed to create id for component.");
 
 		this.atom = new AtomClass(this.defaultState);
+
 		this.charmedComponents.componentAtoms.define({
 			[id]: this.atom,
 		});

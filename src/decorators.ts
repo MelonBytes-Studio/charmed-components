@@ -1,15 +1,25 @@
 import { Reflect } from "@flamework/core";
 import { CharmedComponent } from "component";
 
+type StateAction<T> = TypedPropertyDescriptor<(this: CharmedComponent<T>, ...args: unknown[]) => T>;
+type CallbackAction<T> = TypedPropertyDescriptor<(this: CharmedComponent<T>, ...args: unknown[]) => (previous: T) => T>;
+type UndefinedAction<T> = TypedPropertyDescriptor<(this: CharmedComponent<T>, ...args: unknown[]) => undefined>;
+
+export function Action<T>(_: CharmedComponent<T>, __: string, descriptor: StateAction<T>): StateAction<T>;
+export function Action<T>(_: CharmedComponent<T>, __: string, descriptor: CallbackAction<T>): CallbackAction<T>;
+export function Action<T>(_: CharmedComponent<T>, __: string, descriptor: UndefinedAction<T>): UndefinedAction<T>;
 export function Action<T>(
 	_: CharmedComponent<T>,
 	__: string,
-	descriptor: TypedPropertyDescriptor<(this: CharmedComponent<T>, ...args: unknown[]) => T>,
+	descriptor: TypedPropertyDescriptor<(this: CharmedComponent<T>, ...args: unknown[]) => unknown>,
 ) {
 	const previousMethod = descriptor.value;
 
 	descriptor.value = function (this: CharmedComponent<T>, ...args: unknown[]) {
-		const result = previousMethod(this, ...args);
+		const result = previousMethod(this, ...args) as T | undefined;
+
+		if (result === undefined) return;
+
 		this.setState(result);
 		return result;
 	};

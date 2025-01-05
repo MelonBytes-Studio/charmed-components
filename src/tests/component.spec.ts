@@ -3,7 +3,7 @@
 import { CharmedComponent } from "component";
 import { ignite } from "./flamework-test-utils";
 import { Component, Components } from "@flamework/components";
-import { Dependency } from "@flamework/core";
+import { Dependency, OnStart } from "@flamework/core";
 import { CharmedComponents } from "service";
 import { getIdentifier } from "utils";
 import { Action, Subscribe } from "decorators";
@@ -16,8 +16,10 @@ class MyCharmedComponent extends CharmedComponent<{ i: number }> {
 
 	@Action
 	public add(value: number) {
-		return {
-			i: this.getState().i + value,
+		return (previous: { i: number }) => {
+			return {
+				i: previous.i + value,
+			};
 		};
 	}
 
@@ -42,8 +44,6 @@ export = function () {
 		const part = new Instance("Part");
 		const component = components.addComponent<MyCharmedComponent>(part);
 
-		component.onInit();
-
 		expect(component.attributes.__ID).to.be.ok();
 		expect(component.getState().i).to.equal(1);
 
@@ -57,9 +57,6 @@ export = function () {
 	it("should destroy", () => {
 		const part = new Instance("Part");
 		const component = components.addComponent<MyCharmedComponent>(part);
-
-		component.onInit();
-
 		const componentId = `${component.attributes.__ID}[${getIdentifier(component)}]`;
 
 		components.removeComponent<MyCharmedComponent>(part);
@@ -72,7 +69,6 @@ export = function () {
 		const part = new Instance("Part");
 		const component = components.addComponent<MyCharmedComponent>(part);
 
-		component.onInit();
 		component.add(10);
 
 		const componentId = `${component.attributes.__ID}[${getIdentifier(component)}]`;
@@ -85,8 +81,6 @@ export = function () {
 	it("sync", () => {
 		const part = new Instance("Part");
 		const component = components.addComponent<MyCharmedComponent>(part);
-
-		component.onInit();
 
 		const componentId = `${component.attributes.__ID}[${getIdentifier(component)}]`;
 		const syncConnection = charmedComponents.watchDispatch((_, payload) => {

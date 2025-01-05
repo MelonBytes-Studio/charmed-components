@@ -28,12 +28,12 @@ export class CharmedComponents implements OnInit {
 	}
 
 	public hydrate(player: Player) {
-		assert(IS_CLIENT, "Method hydrate in CharmedComponents can only be called on server");
+		assert(IS_SERVER, "Method hydrate in CharmedComponents can only be called on server");
 		this.componentAtoms!.syncer.hydrate(player);
 	}
 
 	public watchDispatch(watcher: (player: Player, payload: Payload) => void) {
-		assert(IS_CLIENT, "Method watchDispatch in CharmedComponents can only be called on server");
+		assert(IS_SERVER, "Method watchDispatch in CharmedComponents can only be called on server");
 		return this.componentAtoms!.syncer.watchDispatch(watcher);
 	}
 

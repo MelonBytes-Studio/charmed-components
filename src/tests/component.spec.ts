@@ -29,6 +29,17 @@ class MyCharmedComponent extends CharmedComponent<{ i: number }> {
 	}
 }
 
+@Component()
+class ParentCharmedComponent extends CharmedComponent<number> {
+	protected defaultState: number = 0;
+}
+
+@Component()
+class ChildCharmedComponent extends ParentCharmedComponent {}
+
+const getIdOfCharmedComponent = (component: CharmedComponent) =>
+	(CharmedComponent as never as { getId: (self: CharmedComponent) => string }).getId(component);
+
 export = function () {
 	let components: Components;
 	let charmedComponents: CharmedComponents;
@@ -47,7 +58,7 @@ export = function () {
 		expect(component.attributes.__ID).to.be.ok();
 		expect(component.getState().i).to.equal(1);
 
-		const componentId = `${component.attributes.__ID}[${getIdentifier(component)}]`;
+		const componentId = getIdOfCharmedComponent(component);
 		expect(charmedComponents.componentAtoms.tryGetAtom(componentId)).to.be.ok();
 
 		components.removeComponent<MyCharmedComponent>(part);
@@ -57,7 +68,7 @@ export = function () {
 	it("should destroy", () => {
 		const part = new Instance("Part");
 		const component = components.addComponent<MyCharmedComponent>(part);
-		const componentId = `${component.attributes.__ID}[${getIdentifier(component)}]`;
+		const componentId = getIdOfCharmedComponent(component);
 
 		components.removeComponent<MyCharmedComponent>(part);
 		part.Destroy();
@@ -71,7 +82,7 @@ export = function () {
 
 		component.add(10);
 
-		const componentId = `${component.attributes.__ID}[${getIdentifier(component)}]`;
+		const componentId = getIdOfCharmedComponent(component);
 		expect((charmedComponents.componentAtoms.get(componentId).getData() as { i: number }).i).to.equal(11);
 
 		components.removeComponent<MyCharmedComponent>(part);
@@ -82,7 +93,7 @@ export = function () {
 		const part = new Instance("Part");
 		const component = components.addComponent<MyCharmedComponent>(part);
 
-		const componentId = `${component.attributes.__ID}[${getIdentifier(component)}]`;
+		const componentId = getIdOfCharmedComponent(component);
 		const syncConnection = charmedComponents.watchDispatch((_, payload) => {
 			charmedComponents.sync(payload);
 		});
@@ -97,5 +108,13 @@ export = function () {
 		syncConnection();
 		components.removeComponent<MyCharmedComponent>(part);
 		part.Destroy();
+	});
+
+	it("should correctly initialize childs of charmed components", () => {
+		const part = new Instance("Part");
+		const child = components.addComponent<ChildCharmedComponent>(part);
+
+		const componentId = getIdOfCharmedComponent(child);
+		expect(componentId).to.equal(`${child.attributes.__ID}[$mb:tests/component.spec@ParentCharmedComponent]`);
 	});
 };

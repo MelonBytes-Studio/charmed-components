@@ -5,7 +5,12 @@
 		"@rbxts/charmed-components:out/atom-link@AtomLink": "$mb:atom-link@AtomLink",
 		"@rbxts/charmed-components:out/service@CharmedComponents": "$mb:service@CharmedComponents",
 		"@rbxts/charmed-components:out/component@CharmedComponent": "$mb:component@CharmedComponent",
-		"@rbxts/charmed-components:out/tests/component.spec@MyCharmedComponent": "$mb:tests/component.spec@MyCharmedComponent"
+		"@rbxts/charmed-components:out/tests/component.spec@MyCharmedComponent": "$mb:tests/component.spec@MyCharmedComponent",
+		"@rbxts/charmed-components:out/tests/utils.spec@A": "$mb:tests/utils.spec@A",
+		"@rbxts/charmed-components:out/tests/utils.spec@B": "$mb:tests/utils.spec@B",
+		"@rbxts/charmed-components:out/tests/utils.spec@C": "$mb:tests/utils.spec@C",
+		"@rbxts/charmed-components:out/tests/component.spec@ParentCharmedComponent": "$mb:tests/component.spec@ParentCharmedComponent",
+		"@rbxts/charmed-components:out/tests/component.spec@ChildCharmedComponent": "$mb:tests/component.spec@ChildCharmedComponent"
 	},
 	"metadata": {},
 	"identifierPrefix": "$mb",
@@ -37,6 +42,26 @@
 		{
 			"filePath": "out\\tests\\component.spec.lua",
 			"internalId": "$mb:tests/component.spec@MyCharmedComponent",
+			"decorators": [
+				{
+					"internalId": "$c:components@Component",
+					"name": "Component"
+				}
+			]
+		},
+		{
+			"filePath": "out\\tests\\component.spec.lua",
+			"internalId": "$mb:tests/component.spec@ChildCharmedComponent",
+			"decorators": [
+				{
+					"internalId": "$c:components@Component",
+					"name": "Component"
+				}
+			]
+		},
+		{
+			"filePath": "out\\tests\\component.spec.lua",
+			"internalId": "$mb:tests/component.spec@ParentCharmedComponent",
 			"decorators": [
 				{
 					"internalId": "$c:components@Component",

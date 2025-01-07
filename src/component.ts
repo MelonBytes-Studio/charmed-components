@@ -6,7 +6,7 @@ import { AtomClass } from "@rbxts/sweet-charm";
 import { AtomLink } from "atom-link";
 import { IS_CLIENT, IS_SERVER } from "constants";
 import { CharmedComponents } from "service";
-import { getIdentifier } from "utils";
+import { findFirstChildOf, getIdentifier } from "utils";
 
 interface SubscribeMetadata<T, Y> {
 	subscriber: (self: CharmedComponent<T>, state: Y, previousState: Y) => void;
@@ -158,7 +158,20 @@ export abstract class CharmedComponent<
 			return undefined;
 		}
 
-		const componentId = getIdentifier(this);
+		const rootComponent = findFirstChildOf(CharmedComponent as never, this);
+
+		if (rootComponent === undefined) {
+			return undefined;
+		}
+
+		const componentId = getIdentifier(rootComponent);
+
+		if (componentId === getIdentifier(CharmedComponent)) {
+			warn(
+				"charmed-components uses the same componentId as CharmedComponent, this will cause errors. Please make sure you did decorated parent as component of that component",
+			);
+		}
+
 		return `${this.attributes.__ID}[${componentId}]`;
 	}
 

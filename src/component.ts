@@ -28,6 +28,7 @@ export abstract class CharmedComponent<
 	private atom!: AtomClass<State>;
 	private atomLink!: AtomLink<State>;
 
+	protected useMostClosestComponentForId: boolean = true;
 	protected abstract defaultState: State;
 
 	constructor(private charmedComponents: CharmedComponents) {
@@ -156,6 +157,16 @@ export abstract class CharmedComponent<
 
 		if (instanceId === undefined) {
 			return undefined;
+		}
+
+		if (!this.useMostClosestComponentForId) {
+			const componentId = getIdentifier(this);
+
+			if (componentId === undefined) {
+				return undefined;
+			}
+
+			return `${this.attributes.__ID}[${componentId}]`;
 		}
 
 		const rootComponent = findFirstChildOf(CharmedComponent as never, this);

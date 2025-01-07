@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/charmed-components",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Library that adds sweet-charm atoms power to flamework components",
   "main": "out/init.luau",
   "type": "module",

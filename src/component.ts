@@ -9,7 +9,7 @@ import { CharmedComponents } from "service";
 import { getIdentifier } from "utils";
 
 interface SubscribeMetadata<T, Y> {
-	subscriber: (state: Y) => void;
+	subscriber: (self: CharmedComponent<T>, state: Y, previousState: Y) => void;
 	selector: (state: T) => Y;
 }
 
@@ -143,7 +143,11 @@ export abstract class CharmedComponent<
 
 			if (!subscriber) return;
 
-			this.janitor.Add(this.subscribe(subscriber.selector, subscriber.subscriber));
+			this.janitor.Add(
+				this.subscribe(subscriber.selector, (state, previousState) =>
+					subscriber.subscriber(this, state, previousState),
+				),
+			);
 		});
 	}
 

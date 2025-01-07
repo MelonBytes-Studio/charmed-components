@@ -31,11 +31,11 @@ export function Subscribe<T, Y>(selector: (state: T) => Y) {
 	return (
 		target: CharmedComponent<T>,
 		propertyName: string,
-		descriptor: TypedPropertyDescriptor<(this: CharmedComponent<T>, state: Y) => void>,
+		descriptor: TypedPropertyDescriptor<(this: CharmedComponent<T>, state: Y, previousState: Y) => void>,
 	) => {
 		const previousMethod = descriptor.value;
-		const subscriber = (state: Y) => {
-			previousMethod(target, state);
+		const subscriber = function (this: CharmedComponent<T>, state: Y, previousState: Y) {
+			previousMethod(this, state, previousState);
 		};
 
 		descriptor.value = (...args: unknown[]) => {

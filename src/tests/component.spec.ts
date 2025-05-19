@@ -13,6 +13,7 @@ class MyCharmedComponent extends CharmedComponent<{ i: number }> {
 	protected defaultState = {
 		i: 1,
 	};
+	protected useMostClosestComponentForId = false;
 
 	@Action
 	public add(value: number) {

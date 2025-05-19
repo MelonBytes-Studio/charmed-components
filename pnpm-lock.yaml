@@ -8,31 +8,28 @@ importers:
 
   .:
     dependencies:
-      '@flamework/components':
-        specifier: ^1.2.3
-        version: 1.2.3(@flamework/core@1.2.3)
-      '@flamework/core':
-        specifier: ^1.2.3
-        version: 1.2.3
       '@rbxts/janitor':
         specifier: 1.17.0-ts.1
         version: 1.17.0-ts.1
       '@rbxts/services':
         specifier: ^1.5.5
         version: 1.5.5
-      '@rbxts/t':
-        specifier: ^3.1.1
-        version: 3.1.1
     devDependencies:
       '@eslint/js':
         specifier: ^9.17.0
         version: 9.17.0
+      '@flamework/components':
+        specifier: ^1.2.3
+        version: 1.2.3(@flamework/core@1.2.3)
+      '@flamework/core':
+        specifier: ^1.2.3
+        version: 1.2.3
       '@rbxts/compiler-types':
         specifier: ^3.0.0-types.0
         version: 3.0.0-types.0
       '@rbxts/sweet-charm':
-        specifier: ^1.3.0
-        version: 1.3.0(@rbxts/charm@0.8.1)
+        specifier: ^1.4.2
+        version: 1.4.2(@rbxts/charm@0.8.1)
       '@rbxts/testez':
         specifier: ^0.4.2-ts.0
         version: 0.4.2-ts.0
@@ -174,10 +171,10 @@ packages:
   '@rbxts/signal@1.1.1':
     resolution: {integrity: sha512-WX+ONE+ld4pG9PvRkR8OgDld9NpaV1RfXyUIw+Q2oXP/5rehkYzvt20NWtrLAP3NhMc5inYInLd+hnufey6nFw==}
 
-  '@rbxts/sweet-charm@1.3.0':
-    resolution: {integrity: sha512-z6D70I9+2A8gWCUXG/lSTxSAcpZV8DafkMsN9nOtdccv/Qpt1Uqevo+pJ4wxJb3mhNBJGLV8qHz5v9O5vfeMUg==}
+  '@rbxts/sweet-charm@1.4.2':
+    resolution: {integrity: sha512-6n3ZtWaSEaFtySGgAb9iyjPEMI1HACXifgdRV6KwXCyoGqz3rdI8kXRxXTswQkA5Ay7E2hrcApCixD5LBR3J4Q==}
     peerDependencies:
-      '@rbxts/charm': ^0.8.1
+      '@rbxts/charm': ^0.10.0
 
   '@rbxts/t@2.2.1':
     resolution: {integrity: sha512-MoFLHRQdm1tpAviAVxgkQj/ktxtnGBund2HXQj5xRqgYUWuC3kYuLkctuxXiJHUd1o1JzfU/HvVHtZfpqp61tg==}
@@ -1027,7 +1024,7 @@ snapshots:
 
   '@rbxts/signal@1.1.1': {}
 
-  '@rbxts/sweet-charm@1.3.0(@rbxts/charm@0.8.1)':
+  '@rbxts/sweet-charm@1.4.2(@rbxts/charm@0.8.1)':
     dependencies:
       '@rbxts/beacon': 2.1.1
       '@rbxts/charm': 0.8.1
